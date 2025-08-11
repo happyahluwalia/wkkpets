@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WKK Dog Walking & Boarding Service</title>
+  <meta name="description" content="WKK — Bright, friendly dog walking and boarding. Book walks, sitting, boarding or drop-in visits." />
+  <style>
+    /* ---------- Base & Layout ---------- */
+    :root{
+      --brand:#FF7A5C; /* playful coral */
+      --accent:#FFD56B; /* warm yellow */
+      --muted:#63707A;
+      --card:#ffffff;
+      --bg:#f7fbff;
+      --glass: rgba(255,255,255,0.75);
+      --radius:16px;
+      --shadow: 0 8px 24px rgba(99,112,122,0.08);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--bg), #fff);
+      color:#123;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:14px;padding:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),#ffb199);box-shadow:var(--shadow)}
+    .logo svg{width:42px;height:42px}
+    h1{font-size:20px;margin:0}
+    .tag{color:var(--muted);font-size:13px}
+
+    nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--brand);color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(255,122,92,0.18)}
+    .btn.secondary{background:white;color:var(--brand);border:1px solid rgba(18,34,50,0.06)}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:28px 0}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));padding:28px;border-radius:20px;box-shadow:var(--shadow)}
+    .kicker{display:inline-block;background:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:12px}
+    h2{margin:6px 0 12px;font-size:28px}
+    p.lead{color:var(--muted);line-height:1.45}
+    .features{display:flex;gap:12px;margin-top:18px}
+    .feature{background:#fff;border-radius:12px;padding:10px;flex:1;text-align:center;box-shadow:0 6px 16px rgba(99,112,122,0.06)}
+    .feature b{display:block;margin-top:8px}
+
+    /* booking box */
+    .book-box{background:linear-gradient(90deg,#fff,#fff);padding:18px;border-radius:14px;border:1px solid rgba(18,34,50,0.04)}
+    .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+    .service{padding:10px;border-radius:10px;border:1px dashed rgba(18,34,50,0.04);text-align:center;cursor:pointer}
+
+    /* About & steps */
+    .section{margin:36px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+
+    /* Testimonials */
+    .testi{display:flex;gap:12px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:999px;overflow:hidden}
+    .stars{color:#FFB84D}
+
+    footer{margin-top:36px;padding:28px 0;border-top:1px solid rgba(18,34,50,0.04);color:var(--muted)}
+    .footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center}
+
+    /* modal/login */
+    .overlay{position:fixed;inset:0;background:rgba(10,12,15,0.45);display:none;align-items:center;justify-content:center;padding:28px;z-index:60}
+    .modal{width:420px;background:white;border-radius:14px;padding:18px;box-shadow:0 30px 80px rgba(10,12,15,0.4)}
+    .modal h3{margin:6px 0 12px}
+    .field{display:flex;flex-direction:column;margin-bottom:10px}
+    .field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .field input{padding:10px;border-radius:10px;border:1px solid rgba(18,34,50,0.08)}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:1fr}
+      .footer-grid{flex-direction:column;align-items:flex-start}
+      .container{padding:18px}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- playful WKK paw logo (SVG) -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WKK logo">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#FF7A5C"/>
+                <stop offset="1" stop-color="#FFB199"/>
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="12" fill="url(#g1)" />
+            <g transform="translate(8,8) scale(0.75)" fill="#fff">
+              <ellipse cx="16" cy="8" rx="5" ry="6"/>
+              <ellipse cx="32" cy="8" rx="5" ry="6"/>
+              <ellipse cx="10" cy="20" rx="6" ry="9"/>
+              <ellipse cx="38" cy="20" rx="6" ry="9"/>
+              <circle cx="24" cy="30" r="10" />
+            </g>
+            <text x="10" y="56" font-size="8" fill="rgba(255,255,255,0.9)" font-family="sans-serif">WKK</text>
+          </svg>
+        </div>
+        <div>
+          <h1>WKK Dog Walking & Boarding</h1>
+          <div class="tag">Head branch: Mohan Nagar, Chinchwad, India — International: Dubai · USA</div>
+        </div>
+      </div>
+      <nav>
+        <button class="btn" id="bookNow">Book a Service</button>
+        <button class="btn secondary" id="becomeWalker">Become a Walker</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card">
+          <span class="kicker">Trusted · Local · Friendly</span>
+          <h2>Happy dogs, happy walks — reliable care by WKK</h2>
+          <p class="lead">We offer daily walks, pet sitting, overnight boarding and quick drop-in visits. Trained & insured walkers, easy booking, and personalized care for your dog.</p>
+
+          <div class="features" style="margin-top:18px">
+            <div class="feature">
+              <div style="font-size:22px">🚶‍♂️</div>
+              <b>Walks</b>
+              <small class="small">30–60 minute options</small>
+            </div>
+            <div class="feature">
+              <div style="font-size:22px">🏡</div>
+              <b>Sitting</b>
+              <small class="small">At your home</small>
+            </div>
+            <div class="feature">
+              <div style="font-size:22px">🛏️</div>
+              <b>Boarding</b>
+              <small class="small">Safe overnight stays</small>
+            </div>
+            <div class="feature">
+              <div style="font-size:22px">⏱️</div>
+              <b>Drop-in</b>
+              <small class="small">Quick play & potty breaks</small>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+            <button class="btn" id="bookNow2">Book a Walker</button>
+            <button class="btn secondary" onclick="scrollToSection('about')">Learn more</button>
+          </div>
+        </div>
+
+        <aside>
+          <div class="book-box">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Quick Book</div>
+                <div class="small">Choose a service and schedule</div>
+              </div>
+              <div style="text-align:right;color:var(--muted);font-size:12px">Starting ₹199</div>
+            </div>
+
+            <div class="service-grid">
+              <div class="service" data-service="walk">Walking</div>
+              <div class="service" data-service="sitting">Sitting</div>
+              <div class="service" data-service="boarding">Boarding</div>
+              <div class="service" data-service="dropin">Drop-in</div>
+            </div>
+
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <input id="date" type="date" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(18,34,50,0.06)" />
+              <select id="time" style="padding:10px;border-radius:10px;border:1px solid rgba(18,34,50,0.06)">
+                <option>09:00</option>
+                <option>11:00</option>
+                <option>14:00</option>
+                <option>17:00</option>
+              </select>
+            </div>
+            <button class="btn" style="width:100%;margin-top:12px" id="startBooking">Continue to Login</button>
+          </div>
+
+          <div style="margin-top:12px;text-align:center;color:var(--muted);font-size:13px">Serving Mohan Nagar, Chinchwad • Dubai • USA</div>
+        </aside>
+      </section>
+
+      <section id="about" class="section">
+        <div style="display:flex;justify-content:space-between;gap:16px;align-items:stretch">
+          <div style="flex:1">
+            <h3>About WKK</h3>
+            <p class="small">WKK Dog Walking & Boarding started with a simple idea — make daily dog care easy and dependable. Our head branch is in Mohan Nagar, Chinchwad, India, and we run international branches in Dubai and the USA. All our walkers are screened and trained with customer-first service in mind.</p>
+
+            <div style="margin-top:16px" class="grid-3">
+              <div class="card">
+                <h4 style="margin:4px 0">Our Promise</h4>
+                <p class="small">Personalized care, real-time photo updates, and a flexible booking experience.</p>
+              </div>
+              <div class="card">
+                <h4 style="margin:4px 0">Safety First</h4>
+                <p class="small">Insurance, ID-checked walkers, and secure handoffs for peace of mind.</p>
+              </div>
+              <div class="card">
+                <h4 style="margin:4px 0">Community</h4>
+                <p class="small">Local meetups, puppy socials, and training referrals to help your dog thrive.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="width:360px">
+            <img src="images/dog1.jpg" alt="happy dog" style="width:100%;border-radius:12px;object-fit:cover;height:320px" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=900&q=60'" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3>How it works</h3>
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:220px">
+            <b>1. Book</b>
+            <p class="small">Choose walking, sitting, boarding, or a drop-in visit and schedule a time.</p>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <b>2. Meet your walker</b>
+            <p class="small">We introduce you to a vetted local walker who meets your pup's needs.</p>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <b>3. Enjoy updates</b>
+            <p class="small">Get photos, notes, and peace of mind during every visit.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3>What pet owners say</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:280px">
+            <div class="testi">
+              <div class="avatar"><img src="images/person1.jpg" alt="owner" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=60'"/></div>
+              <div>
+                <div style="font-weight:700">Priya R.</div>
+                <div class="small">San Ramon, CA</div>
+              </div>
+            </div>
+            <p style="margin-top:10px">“Amazing walkers — I get photos of my pup every day. Booking is simple and the team is super responsive.”</p>
+          </div>
+
+          <div class="card" style="flex:1;min-width:280px">
+            <div class="testi">
+              <div class="avatar"><img src="images/person2.jpg" alt="owner" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1545996124-1e4d5f7b28d7?auto=format&fit=crop&w=400&q=60'"/></div>
+              <div>
+                <div style="font-weight:700">Aman S.</div>
+                <div class="small">Mohan Nagar</div>
+              </div>
+            </div>
+            <p style="margin-top:10px">“Left our dog for boarding for a weekend — he came home tired and happy. Great people.”</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div style="font-weight:700">WKK Dog Walking & Boarding</div>
+          <div class="small">Head: Mohan Nagar, Chinchwad · International: Dubai · USA</div>
+          <div style="margin-top:8px" class="small">Email: hello@wkkpets.live · Phone: +91 90000 00000</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:center">
+          <div class="small">© 2025 WKK</div>
+          <div style="display:flex;gap:10px">
+            <a class="small" href="#">Terms</a>
+            <a class="small" href="#">Privacy</a>
+            <a class="small" href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal overlay for login & booking -->
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div id="modalContent">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- UI interactions ----------
+    const overlay = document.getElementById('overlay');
+    const modalContent = document.getElementById('modalContent');
+    const selected = { service: null, date: null, time: null };
+
+    function openLogin(nextAction){
+      overlay.style.display='flex';
+      modalContent.innerHTML = `
+        <h3 id="modalTitle">Login to continue</h3>
+        <p class="small">Enter email and password. This demo simulates login (no backend).</p>
+        <div class="field"><label>Email</label><input id="loginEmail" type="email" placeholder="you@domain.com" /></div>
+        <div class="field"><label>Password</label><input id="loginPass" type="password" placeholder="password" /></div>
+        <button class="btn" id="loginBtn">Login</button>
+        <div style="margin-top:8px"><a href="#" id="closeLink" class="small">Close</a></div>
+      `;
+
+      document.getElementById('closeLink').onclick = (e)=>{e.preventDefault();closeOverlay();}
+      document.getElementById('loginBtn').onclick = ()=>{
+        const email = document.getElementById('loginEmail').value.trim();
+        const pass = document.getElementById('loginPass').value.trim();
+        if(!email || !pass){alert('Please enter email and password');return}
+        // simulated success
+        modalContent.innerHTML = `<h3>Welcome back!</h3><p class='small'>Logged in as <strong>${escapeHtml(email)}</strong></p><button class='btn' id='continueBook'>Continue</button>`;
+        document.getElementById('continueBook').onclick = ()=>{ closeOverlay(); if(typeof nextAction === 'function') nextAction(); };
+      }
+    }
+
+    function openBookingForm(){
+      // show booking confirmation form
+      const d = document.getElementById('date').value;
+      const t = document.getElementById('time').value;
+      if(!selected.service){ alert('Pick a service first'); return }
+      modalContent.innerHTML = `
+        <h3>Confirm booking</h3>
+        <p class='small'>Service: <strong>${selected.service}</strong></p>
+        <p class='small'>Date: <strong>${d || 'Any'}</strong> · Time: <strong>${t || 'Any'}</strong></p>
+        <div class='field'><label>Notes for walker (e.g., leash location, food)</label><input id='notes' placeholder='Any special notes' /></div>
+        <button class='btn' id='confirmBtn'>Confirm Booking</button>
+        <div style='margin-top:8px'><a href='#' id='cancelBooking' class='small'>Cancel</a></div>
+      `;
+      document.getElementById('confirmBtn').onclick = ()=>{
+        modalContent.innerHTML = `<h3>Booked ✅</h3><p class='small'>Thanks! A confirmation email will be sent (demo).</p><button class='btn' id='doneBtn'>Done</button>`;
+        document.getElementById('doneBtn').onclick = ()=>{ closeOverlay(); }; 
+      }
+      document.getElementById('cancelBooking').onclick = (e)=>{ e.preventDefault(); closeOverlay(); };
+    }
+
+    function closeOverlay(){ overlay.style.display='none'; modalContent.innerHTML=''; }
+
+    // helpers
+    function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    // event wiring
+    document.getElementById('bookNow').onclick = ()=> openLogin(openBookingForm);
+    document.getElementById('bookNow2').onclick = ()=> openLogin(openBookingForm);
+    document.getElementById('becomeWalker').onclick = ()=> openLogin(()=>{ alert('Thanks for your interest — we will reach out (demo).') });
+
+    document.querySelectorAll('.service').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        document.querySelectorAll('.service').forEach(x=>x.style.border='1px dashed rgba(18,34,50,0.04)');
+        el.style.border='2px solid rgba(255,122,92,0.25)';
+        selected.service = el.dataset.service;
+      })
+    });
+
+    document.getElementById('startBooking').onclick = ()=>{
+      selected.date = document.getElementById('date').value;
+      selected.time = document.getElementById('time').value;
+      openLogin(openBookingForm);
+    }
+
+    // clicking outside modal closes it
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+
+    function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+  </script>
+</body>
+</html>
